@@ -96,11 +96,11 @@ export function handleLiquidated(event: LiquidatedEvent): void {
 
 export function handleLoanRequested(event: LoanRequestedEvent): void {
   let entity = new LoanRequested(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.params.id.toHex()
   )
   entity.requester = event.params.requester
   entity.borrower = event.params.borrower
-  entity.EzPay_id = event.params.id
+  entity.id = event.params.id.toHex()
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
